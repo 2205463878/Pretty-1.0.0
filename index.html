@@ -13,6 +13,10 @@
 			console.log(_.arrays.only(arr, 'name'));
 			console.log(_.arrays.remove(arr, 'id', 1));
 			console.log(_.arrays.remove(arr, 'name', 'a'));
+			
+			var arrs = [{'id':5,'name':'e'},{'id':3,'name':'c'},{'id':1,'name':'a'},{'id':4,'name':'d'},{'id':2,'name':'b'}]; 
+			console.log(_.arrays.bubbleSort(arrs, 'id'));
+			console.log(_.arrays.bubbleSort(arrs, 'id').reverse());
 		</script>
 	</head>
 	<body>
