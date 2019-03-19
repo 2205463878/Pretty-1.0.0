@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<script src="Superstr-1.0.js"></script>
+		<script>
+			var superstr = new Superstr();
+			console.log(_.version);//1.0
+			console.log(superstr.version);//1.0
+			console.log(_ instanceof Object);//true
+			console.log(_ instanceof Superstr);//true
+			
+			var arr = [{'id':1,'name':'a'}, {'id':1,'name':'a'}, {'id':2,'name':'a'}, {'id':2,'name':'A'}, {'id':3,'name':'B'}, {'id':3,'name':'b'}, {'id':4,'name':'b'}]
+			console.log(_.arrays.only(arr, 'id'));
+			console.log(_.arrays.only(arr, 'name'));
+			console.log(_.arrays.remove(arr, 'id', 1));
+			console.log(_.arrays.remove(arr, 'name', 'a'));
+		</script>
+	</head>
+	<body>
+		流行浏览器：Google Chrome、Mozilla Firefox<br/>
+		浏览器内核：Webkit、Blink、Gecko
+	</body>
+</html>
