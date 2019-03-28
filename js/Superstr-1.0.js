@@ -50,4 +50,39 @@ Superstr.prototype.arrays={
 		return array;
 	}
 }
+Superstr.prototype.classNames={
+	names: {
+		draggable:"draggable"
+	},
+   /**
+	*添加拖拽效果，对象互换
+	*@descriptions：在添加效果之前需要保证对象可拖动（draggable="true"）
+	*/
+	draggable: function() {
+		var className = this.names.draggable;
+		var obj = null;//拖动的对象
+		window.onload=function() {
+			var elements = document.getElementsByClassName(className);
+			for(var n=0;n<elements.length;n++) {
+				//开始拖动
+				elements[n].ondragstart = function(event) {  
+					obj=event.target;  
+					event.dataTransfer.setData("draggable",event.target.innerHTML);  
+				}  
+				//放置的位置
+				elements[n].ondragover = function(event) {  
+					event.preventDefault();  
+				}
+				//进行放置
+				elements[n].ondrop = function(event) {  
+					event.preventDefault();  
+					if(obj != event.target){  
+						obj.innerHTML = event.target.innerHTML; 
+						event.target.innerHTML=event.dataTransfer.getData("draggable");
+					}  
+				} 
+			}
+		}
+	}
+}
 var _ = new Superstr();
