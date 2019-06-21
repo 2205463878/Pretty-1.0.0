@@ -1,37 +1,58 @@
 <html>
 	<head>
-		<script src="js/Superstr-1.0.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/Pretty-1.0.0.css"></script>
+		<script src="js/Pretty-1.0.0.js"></script>
 		<script>
-			var superstr = new Superstr();
-			console.log(_.version);//1.0
-			console.log(superstr.version);//1.0
-			console.log(_ instanceof Object);//true
-			console.log(_ instanceof Superstr);//true
-			
-			var arr = [{'id':1,'name':'a'}, {'id':1,'name':'a'}, {'id':2,'name':'a'}, {'id':2,'name':'A'}, {'id':3,'name':'B'}, {'id':3,'name':'b'}, {'id':4,'name':'b'}]
-			console.log(_.arrays.only(arr, 'id'));
-			console.log(_.arrays.only(arr, 'name'));
-			console.log(_.arrays.remove(arr, 'id', 1));
-			console.log(_.arrays.remove(arr, 'name', 'a'));
-			
-			var arrs = [{'id':5,'name':'e'},{'id':3,'name':'c'},{'id':1,'name':'a'},{'id':4,'name':'d'},{'id':2,'name':'b'}]; 
-			console.log(_.arrays.bubbleSort(arrs, 'id'));
-			console.log(_.arrays.bubbleSort(arrs, 'id').reverse());
-			_.classNames.draggable();
+			var array = [{'id':0}, {'id':0}, {'id':2}, {'id':4}, {'id':5}, {'id':6}, {'id':-1}, {'id':8},{'id':11},{'id':29},{'id':9},{'id':8},{'id':7},{'id':999999999},{'id': 3},{'id':-1}];
 		</script>
 	</head>
 	<body>
-		流行浏览器：Google Chrome、Mozilla Firefox<br/>
-		浏览器内核：Webkit、Blink、Gecko
-		<div draggable="true" class="draggable">0</div>  
-		<div draggable="true" class="draggable">1</div>
-		<div draggable="true" class="draggable">2</div>
-		<div draggable="true" class="draggable">3</div>  
-		<div draggable="true" class="draggable">4</div>  
-		<div draggable="true" class="draggable">5</div>
-		<div draggable="true" class="draggable">6</div>  
-		<div draggable="true" class="draggable">7</div>  
-		<div draggable="true" class="draggable">8</div>
-		<div draggable="true" class="draggable">9</div>  
+		<!--Pretty button-->
+		<input type="button" class="pretty-button-submit" value="submit"/>
+		
+		<!--Pretty Arrays-->
+		<script>
+			/*移除数组中重复的数据*/
+			var onlyArray = _.Arrays.only(array, 'id');
+			console.log(onlyArray);
+			
+			/*根据条件移除数组中的元素*/
+			var removeArray = _.Arrays.remove(array, 'id', 0);
+			console.log(removeArray);
+			
+			/*根据条件搜索数组中的元素*/
+			var searchArray = _.Arrays.search(array, 'id', 0);
+			console.log(searchArray);
+			
+			/*根据属性对数组进行冒泡排序（递增）*/
+			var bubbleSortArray = _.Arrays.bubbleSort(array, 'id');
+			console.log(bubbleSortArray);
+			console.log(bubbleSortArray.reverse());
+		</script>
+		
+		<!--Pretty Events-->
+		<div onclick="javascript:alert('已经确认');">
+			<input type="button" class="pretty-button-submit" value="进行验证" onclick="javascript:var answer = window.confirm('确定吗?');if(!answer){_.Events.stopBubble(this);}" />
+		</div> 
+		
+		<!--Pretty ClassNames-->
+		<div id="content"></div>
+		<script>
+			var contentHTML = '';
+			for(var n = 0; n < array.length; n++) {
+				contentHTML+='<div draggable="true" class="draggable">'+array[n].id+'</div>';
+			}
+			document.getElementById('content').innerHTML=contentHTML;
+			_.ClassNames.draggable('draggable');
+		</script>
+		
+		<!--Pretty HttpRequest-->
+		<script>
+			var url = '';
+			_.HttpRequest.request('GET', url, true, function(result) {
+				console.log(result);
+			}, null);
+		</script>
 	</body>
 </html>
